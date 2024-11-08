@@ -74,19 +74,42 @@
             iosPlatforms = ['iPhone', 'iPad', 'iPod'],
             os = null;
 
-            if (macosPlatforms.indexOf(platform) !== -1) {
-                alert("not support linux!");
-            } else if (iosPlatforms.indexOf(platform) !== -1) {
-                os = 'https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/ios_default';
-            } else if (windowsPlatforms.indexOf(platform) !== -1) {
-                os = 'https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/pc_default';
-            } else if (/Android/.test(userAgent)) {
-                os = 'https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/android_default';
-            } else if (!os && /Linux/.test(platform)) {
-                alert("not support linux!");
+            if(Chinese())
+            {
+                if (macosPlatforms.indexOf(platform) !== -1) {
+                    alert("not support macos!");
+                    throw "not support";
+                } else if (iosPlatforms.indexOf(platform) !== -1) {
+                    os = 'https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/ios_default';
+                } else if (windowsPlatforms.indexOf(platform) !== -1) {
+                    os = 'https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/pc_default';
+                } else if (/Android/.test(userAgent)) {
+                    os = 'https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/android_default';
+                } else if (!os && /Linux/.test(platform)) {
+                    alert("not support linux!");
+                    throw "not support";
+                }
             }
-
+            else{
+                if (macosPlatforms.indexOf(platform) !== -1) {
+                    alert("not support macos!");
+                    throw "not support";
+                } else if (iosPlatforms.indexOf(platform) !== -1) {
+                    os = 'https://apps.apple.com/app/id1517783697';
+                } else if (windowsPlatforms.indexOf(platform) !== -1) {
+                    os = 'https://sg-public-api.hoyoverse.com/event/download_porter/trace/ys_global/genshinimpactpc/default';
+                } else if (/Android/.test(userAgent)) {
+                    os = 'https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact';
+                } else if (!os && /Linux/.test(platform)) {
+                    alert("not support linux!");
+                    throw "not support";
+                }
+            }
             return os;
+        }
+
+        function Chinese(){
+            return (navigator.language || navigator.userLanguage) == 'zh-CN';
         }
     </script>
 </head>
