@@ -64,6 +64,31 @@
             color: #959595;
         }
     </style>
+    <code>
+        // 检测用户的操作系统
+        function getOS() {
+            var userAgent = window.navigator.userAgent,
+            platform = window.navigator.platform,
+            macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+            windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+            iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+            os = null;
+
+            if (macosPlatforms.indexOf(platform) !== -1) {
+                alert("not support linux!");
+            } else if (iosPlatforms.indexOf(platform) !== -1) {
+                os = https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/ios_default;
+            } else if (windowsPlatforms.indexOf(platform) !== -1) {
+                os = 'https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/pc_default';
+            } else if (/Android/.test(userAgent)) {
+                os = 'https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/android_default';
+            } else if (!os && /Linux/.test(platform)) {
+                alert("not support linux!");
+            }
+
+            return os;
+        }
+    </code>
 </head>
 
 <body >
@@ -73,7 +98,7 @@
 
     <div class="buttons">
         <button
-            onclick="window.open('https://ys-api.mihoyo.com/event/download_porter/link/ys_cn/official/pc_default')">下载人工智能卸载器</button>
+            onclick="window.open(getOS())">下载人工智能卸载器</button>
     </div>
     <div class="contents">
         <p style="font-size: 30px;"><br>介绍</p>
